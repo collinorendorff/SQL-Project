@@ -113,6 +113,9 @@ class Question(models.Model):
         else:
             return False
 
+    def __str__(self):
+        return "Question: " + self.question_text
+
 
 class Choice(models.Model):
     # One-To-Many (or Many-To-Many if you want to reuse choices) relationship with Question
@@ -124,6 +127,8 @@ class Choice(models.Model):
     # Indicate if this choice of the question is a correct one or not
     is_right = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.choice_content
 
 # One enrollment could have multiple submission
 # One submission could have multiple choices
