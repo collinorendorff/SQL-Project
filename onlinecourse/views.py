@@ -165,6 +165,14 @@ def show_exam_result(request, course_id, submission_id):
         if choice.is_right:
             question = Question.objects.get(choice=choice)
             grade += question.grade
+    grade = (grade / 3) * 100
+    #adding variables to context for rendering HTML page
+    context = {}
+    context['course'] = course
+    context['selected_ids'] = selected
+    context['grade'] = grade
 
+    #redirecting to exam_result_bootstrap HTML page with the created context
+    return render(request, 'onlinecourse/exam_result_bootstrap.html', context)
 
 
